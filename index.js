@@ -10,8 +10,6 @@ const messages = require("./src/messages/routes");
 const users=require("./src/users/routes")
 const PORT = process.env.PORT || 5000;
 const path=require("path")
-
-
 app.use(cors({
     origin: '*',
     allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],

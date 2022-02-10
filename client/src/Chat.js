@@ -17,7 +17,7 @@ function Chat({ socket, user, logout, isAuthenticated }) {
     let [appendMessage, setAppendMessage] = useState([]);
     if (isAuthenticated) {
         //https://fridge-ger.herokuapp.com/api/v1/users
-        let url=  `/api/v1/users`||`/api/v1/users`
+        let url=  `https://fridge-ger.herokuapp.com/api/v1/users`||`/api/v1/users`
         axios.post(url, user).then(res => {
             return res;
         }).then(res=>{
