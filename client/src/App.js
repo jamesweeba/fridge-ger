@@ -5,7 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Start from './components/Auth';
 const URL =  "https://fridge-ger.herokuapp.com/" ||"http://localhost:5000" ;
 function App() {
-    
     const socket = io(URL, { autoConnect: false ,secure: true })
     const { user, isAuthenticated, loginWithRedirect,logout } = useAuth0()
     return <Start socket={socket} isAuthenticated={isAuthenticated} user={user} loginWithRedirect={loginWithRedirect} logout={logout}/> 
