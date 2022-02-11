@@ -7,7 +7,7 @@ function saveMessage(req, res) {
     console.log("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn")
     console.log(dataset);
     console.log("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn")
-    let bindKey =  `${config.apiReleaseStage}.realtime.datasets` ||`esoko.${config.apiReleaseStage}.insyt.records.datasets`;
+    let bindKey =  `${config.apiReleaseStage}.message.datasets` ||`esoko.${config.apiReleaseStage}.insyt.records.datasets`;
     publishToRmq(bindKey, dataset);
     return res.status(201).json({ "message": "message created succesfully", "statusCode": "201" });
 }

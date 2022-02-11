@@ -7,9 +7,9 @@ function createUser(req, res) {
 
     console.log(payload)
    
-    // let bindKey =  `${config.apiReleaseStage}.users.datasets`||`real_time_${config.apiReleaseStage}` ;
+    let bindKey =  `${config.apiReleaseStage}.users.datasets` ;
   
-    // publishToRmq(bindKey, payload);
+    publishToRmq(bindKey, payload);
     return res.status(201).json({"message":"user created succesfully","statusCode":"201"});
 }
 

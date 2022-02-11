@@ -16,24 +16,19 @@ function Chat({ socket, user, logout, isAuthenticated }) {
     let [selectUser, setSelectedUser] = useState({})
     let [appendMessage, setAppendMessage] = useState([]);
     if (isAuthenticated) {
-        //https://fridge-ger.herokuapp.com/api/v1/users
-        let url=  `https://fridge-ger.herokuapp.com/api/v1/users`||`/api/v1/users`
+        //set this as environmnet variable
+        let url = `https://fridge-ger.herokuapp.com/api/v1/users` || `/api/v1/users`
         axios.post(url, user).then(res => {
             return res;
-        }).then(res=>{
-           console.log(res)
-        }).catch(err=>{
-           console.log(err);
+        }).then(res => {
+            console.log(res)
+        }).catch(err => {
+            console.log(err);
         })
-
     }
-
-
-
     useEffect(() => {
         socket.on("users", (data) => {
             setUsers(data)
-
         });
 
         socket.on("private", (data) => {
@@ -51,6 +46,18 @@ function Chat({ socket, user, logout, isAuthenticated }) {
     let handleSendMessage = () => {
         if (currentMessage) {
             let message = { "message": currentMessage, to: selectUser, "toperson": selectUser.username, "fromperson": user.email }
+            if (isAuthenticated) {
+                //set this as environment variable
+                let url = `https://fridge-ger.herokuapp.com/api/v1/messages` || `/api/v1/messages`
+                axios.post(url, user).then(res => {
+                    return res;
+                }).then(res => {
+                    console.log(res)
+                }).catch(err => {
+                    console.log(err);
+                })
+            }
+
             socket.emit("sendmessage", message);
             //make axios call
         }

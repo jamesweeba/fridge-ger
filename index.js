@@ -5,9 +5,8 @@ const cors = require("cors");
 const http = require("http");
 const https       = require( "https" );
 const bodyParser = require("body-parser");
-// const users = require("./src/users/routes");
+const users = require("./src/users/routes");
 const messages = require("./src/messages/routes");
-const users=require("./src/users/routes")
 const PORT = process.env.PORT || 5000;
 const path=require("path")
 app.use(cors({
@@ -26,9 +25,6 @@ if(process.env.NODE_ENV==="production"){
         res.sendFile(path.resolve(__dirname, 'client','build', 'index.html'));
       });
     
-    // app.get("*",(req,res)=>{
-    //     res.sendFile(path.resolve(__dirname,"build","index.html"))
-    // })
 }
 var content = [];
 
