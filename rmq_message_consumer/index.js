@@ -20,7 +20,7 @@ db.init('local')
     app.listen(port, () => {
         console.log("Analytics data feeder consumer initializing completed and running on port: ", port);
     });
-    rmq.consumeMessages(rmqServer, queue, consumeMessagesCallback, messageLimit);
+     rmq.consumeMessages(rmqServer, queue, consumeMessagesCallback, messageLimit);
 function consumeMessagesCallback(err, msg, done) {
     if (err) {
         console.error('Error1: ', err);
@@ -35,7 +35,6 @@ function consumeMessagesCallback(err, msg, done) {
     if (!msg) {
         msg = {};
     }
-
     if (!msg) {
         rmq.connect(`${config.rmqUser}:${config.rmqPassword}@${config.rmqHost}/insyt`, `esoko_exchange_${config.apiReleaseStage}`)
             .then(cnx => {
