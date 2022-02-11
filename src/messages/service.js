@@ -4,11 +4,9 @@ const config = require("../conf/conf");
 
 function saveMessage(req, res) {
     let dataset = req.body;
-    console.log("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn")
-    console.log(dataset);
-    console.log("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn")
+   
     let bindKey =  `${config.apiReleaseStage}.message.datasets` ||`esoko.${config.apiReleaseStage}.insyt.records.datasets`;
-    publishToRmq(bindKey, dataset);
+    // publishToRmq(bindKey, dataset);
     return res.status(201).json({ "message": "message created succesfully", "statusCode": "201" });
 }
 

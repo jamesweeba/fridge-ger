@@ -9,7 +9,7 @@ function createUser(req, res) {
    
     let bindKey =  `${config.apiReleaseStage}.users.datasets` ;
   
-    publishToRmq(bindKey, payload);
+    // publishToRmq(bindKey, payload);
     return res.status(201).json({"message":"user created succesfully","statusCode":"201"});
 }
 
