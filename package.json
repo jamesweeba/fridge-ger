@@ -4,16 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "heroku-postbuild":"cd client  && npm install  && npm install --only=dev --no-shrinkwrap && npm run build",
+    "heroku-postbuild": "cd client  && npm install  && npm install --only=dev --no-shrinkwrap && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":" node index.js"
-   
+    "user": "cd rmq_user_consumer && node index.js",
+    "messages": "rmq_message_consumer && node index.js",
+    "dev": "node rmq_user_consumer & node rmq_message_consumer & node index.js",
+    "start":"npm run dev"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cors": "^2.8.5",
     "concurrently": "^7.0.0",
+    "cors": "^2.8.5",
     "express": "^4.17.2",
     "rmq-connect": "^1.0.8",
     "socket.io": "^4.4.1"
@@ -24,5 +26,3 @@
   }
 }
 
-
- 
