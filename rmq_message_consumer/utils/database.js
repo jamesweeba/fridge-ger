@@ -59,15 +59,14 @@ module.exports = {
         })
 
     },
-    rollbackAnRelease: function(client, logKey = null) {
+    rollbackAnRelease: function(client) {
         return new Promise((resolve, reject) => {
             client.query("ROLLBACK", (err) => {
                 if (err) {
                  console.log(err)
                     reject(err);
-                } else {
+                } 
                     resolve('done');
-                }
             return  client.release((err) => {
                    console.log(err)
                 });

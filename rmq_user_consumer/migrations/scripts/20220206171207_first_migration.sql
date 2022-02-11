@@ -16,10 +16,10 @@
 
 -- // First migration.
 -- Migration SQL that makes the change goes here.
-CREATE EXTENSION "uuid-ossp";
+
 CREATE TABLE users(
 id uuid primary key default  uuid_generate_v4(),
-email varchar UNIQUE not null,
+email varchar UNIQUE ,
 created_ts timestamp default now()
 );
 
