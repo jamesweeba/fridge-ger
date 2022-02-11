@@ -15,7 +15,7 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
 }));
 app.use(bodyParser.json({ limit: '50mb' }), bodyParser.urlencoded({ extended: true, limit: '50mb' }));
-
+//rmq_user_consumer & node rmq_message_consumer & 
 
 app.use("/api/v1/users",users)
 app.use("/api/v1/messages", messages);

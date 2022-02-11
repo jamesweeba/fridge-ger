@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "user": "cd rmq_user_consumer && node index.js",
     "messages": "rmq_message_consumer && node index.js",
-    "dev": "node node index.js",
+    "dev": "node index.js",
     "start":"npm run dev"
   },
   "author": "",
