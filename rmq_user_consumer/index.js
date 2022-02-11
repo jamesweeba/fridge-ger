@@ -16,25 +16,10 @@ let rmqServer = `${config.rmqUser}:${config.rmqPassword}@${config.rmqHost}`;
 
 let queue = `${config.apiReleaseStage}_user_datafeeder`;
 db.init('local')
-
-if (cluster.isMaster) {
-    os.cpus().map(() => {
-        cluster.fork();
-    });
-    console.log(os.cpus());
-} else {
-    app.get('/status', function (req, res) {
-        res.send(`{"status":"ok", "version":${version},"cluster_worker":${cluster.worker.id},"consumes_queue":"${queue}"}`);
-    });
     app.listen(port, () => {
         console.log("Analytics data feeder consumer initializing completed and running on port: ", port);
     });
     rmq.consumeMessages(rmqServer, queue, consumeMessagesCallback, messageLimit);
-}
-
-cluster.on('exit', () => {
-    cluster.fork();
-});
 
 function consumeMessagesCallback(err, msg, done) {
     if (err) {
