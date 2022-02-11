@@ -42,7 +42,7 @@ function Display({ handleChange, logout, appendMessage, user }) {
 
                 </div>
 
-                <div style={footerPanel}> <input type="text" placeholder=" type here" onChange={(event) => setCurrentMessage(event.target.value)} style={inputStyle} /></div>
+                <div style={footerPanel}> <input type="text" placeholder="type here........." onChange={(event) => setCurrentMessage(event.target.value)} style={inputStyle} /></div>
 
             </div>
         </div>

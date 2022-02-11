@@ -74,6 +74,7 @@ function consumeMessagesCallback(err, msg, done) {
         db.commitAndRelease(client)
     }).catch(err => {
         console.log(err);
+        db.rollbackAnRelease(client)
         done()
     })
 

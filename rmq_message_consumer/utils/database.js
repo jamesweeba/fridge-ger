@@ -58,5 +58,29 @@ module.exports = {
 
         })
 
+    },
+    rollbackAnRelease: function(client, logKey = null) {
+        return new Promise((resolve, reject) => {
+            client.query("ROLLBACK", (err) => {
+                if (err) {
+                    logger.error("Error rolling back transaction", {
+                        logKey,
+                        err
+                    });
+                    reject(err);
+                } else {
+                    resolve('done');
+                }
+                logger.debug("Releasing client after rollback", {
+                    logKey
+                });
+            return     client.release((err) => {
+                    logger.debug("Client Released to pool", {
+                        logKey,
+                        err
+                    });
+                });
+            });
+        });
     }
 }
