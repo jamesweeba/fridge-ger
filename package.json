@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "heroku-postbuild": "cd client  && npm install && cd rmq_user_consumer && npm install && cd rmq_user_consumer && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
+    "heroku-postbuild": "cd client  && npm install && cd ../rmq_user_consumer && npm install && cd ../rmq_user_consumer && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "user": "cd rmq_user_consumer && node index.js",
     "messages": "rmq_message_consumer && node index.js",
