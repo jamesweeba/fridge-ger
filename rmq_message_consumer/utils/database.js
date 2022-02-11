@@ -63,22 +63,13 @@ module.exports = {
         return new Promise((resolve, reject) => {
             client.query("ROLLBACK", (err) => {
                 if (err) {
-                    logger.error("Error rolling back transaction", {
-                        logKey,
-                        err
-                    });
+                 console.log(err)
                     reject(err);
                 } else {
                     resolve('done');
                 }
-                logger.debug("Releasing client after rollback", {
-                    logKey
-                });
-            return     client.release((err) => {
-                    logger.debug("Client Released to pool", {
-                        logKey,
-                        err
-                    });
+            return  client.release((err) => {
+                   console.log(err)
                 });
             });
         });
