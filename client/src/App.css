@@ -67,5 +67,6 @@ font-style: italic;
   float:right;
 }
 a:focus{
-  background-color:blue;
+  background-color:blue;   
+  
 }
