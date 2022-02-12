@@ -35,9 +35,9 @@ function Display({ handleChange, logout, appendMessage, user }) {
             <div className="w3-container">
                 <h2></h2>
                 < div style={mainpanel}>
-                    {appendMessage.map((item) => <div id={item.sender == user.name ? "you" : "other"} className="message-content" > <p ><div id={item.sender == user.name ? "you" : "other"} className="message-content" > <p >{item.receiver == user.name ? item.message : item.sender==user.name ? item.message :""}</p></div>)</p></div>)}
 
                 </div>
+                {appendMessage.map((item) => <div id={item.sender == user.name ? "you" : "other"} className="message-content" > <p >{item.receiver == user.name ? item.message : item.sender==user.name ? item.message :<div></div>}</p></div>)}
 
                 <div style={footerPanel}> <input type="text" placeholder="type here........." onChange={(event) => setCurrentMessage(event.target.value)} style={inputStyle} /></div>
 
