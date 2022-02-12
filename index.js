@@ -19,13 +19,13 @@ app.use(bodyParser.json({ limit: '50mb' }), bodyParser.urlencoded({ extended: tr
 
 app.use("/api/v1/users",users)
 app.use("/api/v1/messages", messages);
-if(process.env.NODE_ENV==="production"){
+// if(process.env.NODE_ENV==="development"){
     app.use(express.static(path.join(__dirname, 'client/build')));
     app.get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'client','build', 'index.html'));
       });
     
-}
+// }
 var content = [];
 
 

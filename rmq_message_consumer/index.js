@@ -10,7 +10,9 @@ let client = null;
 
 
 
-let rmqServer = `${config.rmqUser}:${config.rmqPassword}@${config.rmqHost}`;
+
+let rmqServer = `${config.rmqUser}:${config.rmqPassword}@${config.rmqHost}//${config.rmqHost}`;
+
 let queue = `${config.apiReleaseStage}_message_feeder`;
 //development_real_time_datafeeder
 db.init('local')

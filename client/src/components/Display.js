@@ -22,9 +22,6 @@ function Display({ handleChange, logout, appendMessage, user }) {
         "margin-top": "20px"
     }
     useEffect(() => {
-        console.log("this is on changeiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
-        console.log(currentMessage);
-        console.log("this is on changeiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
         handleChange(currentMessage)
     })
 
@@ -38,7 +35,7 @@ function Display({ handleChange, logout, appendMessage, user }) {
             <div className="w3-container">
                 <h2></h2>
                 < div style={mainpanel}>
-                    {appendMessage.map((item) => <div id={item.sender == user.name ? "you" : "other"} className="message-content" > <p >{item.message}</p></div>)}
+                    {appendMessage.map((item) => <div id={item.sender == user.name ? "you" : "other"} className="message-content" > <p ><div id={item.sender == user.name ? "you" : "other"} className="message-content" > <p >{item.receiver == user.name ? item.message : item.sender==user.name ? item.message :""}</p></div>)</p></div>)}
 
                 </div>
 
