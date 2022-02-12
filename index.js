@@ -27,36 +27,27 @@ app.get('*', (req, res) => {
 
 // }
 var content = [];
-
-
 const server = http.createServer(app);
-
 let io = require("socket.io")(server, { cors: { origin: "*" } });
-
-
 io.on("connection", (socket) => {
     let users = [];
-
     for (let [id, socket] of io.of("/").sockets) {
         users.push({ user_id: id, username: socket.handshake.auth.name });
-        users = [...new Set(users)];
-
+        users = [...new Map(users.map(item =>
+            [item["username"], item])).values()];
     }
     io.sockets.emit("users", users)
     console.log("coonected", users)
     socket.emit("connected", users);
-
-
     socket.on("sendmessage", (data) => {
         console.log("message")
         console.log(data, socket.id);
         console.log("message")
         let payload = { "message": data.message, "from": socket.id, "receiver": data.toperson, "sender": data.fromperson }
         content.push(payload);
-        console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxx")
-
+        console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
         console.log(content);
-        console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+        console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
         io.sockets.to(data.user_id).emit("private", content);
     });
 
