@@ -65,7 +65,8 @@ function Chat({ socket, user, logout, isAuthenticated }) {
 
     let handleChange = (message) => {
         setCurrentMessage(message)
-        console.log(message, appendMessage)
+     
+        // console.log(message, appendMessage)
     }
 
     return (

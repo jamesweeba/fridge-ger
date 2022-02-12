@@ -3,12 +3,12 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const http = require("http");
-const https       = require( "https" );
+const https = require("https");
 const bodyParser = require("body-parser");
 const users = require("./src/users/routes");
 const messages = require("./src/messages/routes");
 const PORT = process.env.PORT || 5000;
-const path=require("path")
+const path = require("path")
 app.use(cors({
     origin: '*',
     allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
@@ -17,33 +17,35 @@ app.use(cors({
 app.use(bodyParser.json({ limit: '50mb' }), bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 //rmq_user_consumer & node rmq_message_consumer & 
 
-app.use("/api/v1/users",users)
+app.use("/api/v1/users", users)
 app.use("/api/v1/messages", messages);
 // if(process.env.NODE_ENV==="development"){
-    app.use(express.static(path.join(__dirname, 'client/build')));
-    app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'client','build', 'index.html'));
-      });
-    
+app.use(express.static(path.join(__dirname, 'client/build')));
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+});
+
 // }
 var content = [];
 
 
 const server = http.createServer(app);
 
-let io = require("socket.io")(server, {cors: {origin: "*"}});
+let io = require("socket.io")(server, { cors: { origin: "*" } });
 
 
 io.on("connection", (socket) => {
-    const users = [];
-   
+    let users = [];
+
     for (let [id, socket] of io.of("/").sockets) {
         users.push({ user_id: id, username: socket.handshake.auth.name });
+        users = [...new Set(users)];
+
     }
     io.sockets.emit("users", users)
     console.log("coonected", users)
     socket.emit("connected", users);
-    
+
 
     socket.on("sendmessage", (data) => {
         console.log("message")
