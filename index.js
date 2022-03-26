@@ -19,13 +19,13 @@ app.use(bodyParser.json({ limit: '50mb' }), bodyParser.urlencoded({ extended: tr
 
 app.use("/api/v1/users", users)
 app.use("/api/v1/messages", messages);
-// if(process.env.NODE_ENV==="development"){
+if(process.env.NODE_ENV==="development"){
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 });
 
-// }
+}
 var content = [];
 const server = http.createServer(app);
 let io = require("socket.io")(server, { cors: { origin: "*" } });
@@ -67,7 +67,13 @@ io.on("connection", (socket) => {
 
 
 
-
+/*
+ // "heroku-postbuild": "cd client  && npm install  && npm install --only=dev --no-shrinkwrap && npm run build",
+    // "test": "echo \"Error: no test specified\" && exit 1",
+    // "user": "cd rmq_user_consumer && node index.js",
+    // "messages": "rmq_message_consumer && node index.js",
+    // "dev": "node index.js",
+    // "start":"npm run dev"*/
 
 server.listen(PORT, () => {
     console.log("magic happens on port " + PORT)
